@@ -1,5 +1,5 @@
 ---
 
-- hosts: raspberry-pi-3-access-point
+- hosts: emnet
   roles:
     - access-point

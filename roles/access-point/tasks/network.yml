@@ -1,6 +1,12 @@
 ---
 
-- lineinfile: dest=/etc/dhcpcd.conf line="denyinterfaces wlan0"
+- name: Tell dhcpd to ignore wlan0 (just for last raspbian versions )
+  lineinfile:
+    dest: /etc/dhcpcd.conf
+    line: "denyinterfaces wlan0"
+    state: present
+    create: no
+    insertafter: EOF
 
 - name: Patch WLAN interface
   replace:
@@ -10,5 +16,5 @@
   notify:
     - ifdown wlan
     - ifup wlan
-    
+
 - meta: flush_handlers
